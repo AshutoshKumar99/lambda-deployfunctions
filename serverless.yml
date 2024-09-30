@@ -1,0 +1,38 @@
+# Service name for the Serverless application
+service: test-api
+
+# Specifies the version of the Serverless Framework being used
+frameworkVersion: '3'
+
+provider:
+  # Cloud provider where the application will be deployed
+  name: aws
+  
+  # Runtime environment for the Lambda functions (Node.js version 18.x)
+  runtime: nodejs18.x
+  
+  # AWS region where the Lambda functions will be deployed (ap-south-1 = Asia Pacific - Mumbai)
+  region: ap-south-1
+
+functions:
+  # Definition of the first Lambda function
+  testHelloFunction:
+    # Points to the file and handler for the function (file: hello.js, handler: handler)
+    handler: hello.handler
+    
+    # Events that trigger the function (HTTP API event for GET request to /hello path)
+    events:
+      - httpApi:
+          path: /hello   # The API route that triggers the function
+          method: GET    # HTTP method for the route (GET request)
+
+  # Definition of the second Lambda function
+  testWelcomeFunction:
+    # Points to the file and handler for the function (file: welcome.js, handler: handler)
+    handler: welcome.handler
+    
+    # Events that trigger the function (HTTP API event for GET request to /welcome path)
+    events:
+      - httpApi:
+          path: /welcome  # The API route that triggers the function
+          method: GET     # HTTP method for the route (GET request)
